@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developers &amp; API Platform - Saastify</title>
+  <meta name="description" content="Saastify Developer Hub: REST &amp; GraphQL API documentation, SDKs for Python, Node.js, Go, PHP, webhooks, and sandbox testing environments.">
+
+  <!-- Multi-size Favicons & Brand Assets -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Global Base Styles & Design Tokens -->
+  <style>
+    :root {
+      --bg-dark: #09090b;
+      --bg-surface: #121216;
+      --bg-card: #18181f;
+      --bg-card-hover: #20202a;
+      --border-color: #272732;
+      --border-color-hover: #3b3b4f;
+      --text-main: #f4f4f6;
+      --text-muted: #9494a8;
+      --primary: #6d28d9;
+      --primary-light: #8b5cf6;
+      --primary-glow: rgba(139, 92, 246, 0.18);
+      --secondary: #06b6d4;
+      --accent: #10b981;
+      --badge-popular: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Shared Header Styles */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 9, 11, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: #ffffff;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .btn-login {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .btn-login:hover {
+      background: var(--bg-card);
+      border-color: var(--border-color-hover);
+    }
+    .btn-cta {
+      background: var(--primary-light);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 8px;
+      box-shadow: 0 4px 14px var(--primary-glow);
+      transition: all 0.2s ease;
+    }
+    .btn-cta:hover {
+      background: #7c3aed;
+      transform: translateY(-1px);
+    }
+
+    /* Shared Footer Styles */
+    .site-footer {
+      background: #09090b;
+      border-top: 1px solid var(--border-color);
+      padding: 64px 24px 32px;
+    }
+    .footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 16px;
+      max-width: 320px;
+      line-height: 1.6;
+    }
+    .footer-col h4 {
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      margin: 0 0 18px;
+    }
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+    .footer-col a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s ease;
+    }
+    .footer-col a:hover {
+      color: #ffffff;
+    }
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-top: 32px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <style>
+  .dev-hero {
+    padding: 80px 24px 60px;
+    text-align: center;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .dev-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    background: rgba(6, 182, 212, 0.12);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    color: #22d3ee;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .dev-hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    margin: 0 0 20px;
+    background: linear-gradient(135deg, #ffffff 40%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .dev-hero p {
+    font-size: clamp(16px, 2vw, 19px);
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0 auto 36px;
+    max-width: 680px;
+  }
+
+  .dev-container {
+    max-width: 1280px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+  }
+
+  .quickstart-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 32px;
+    margin-bottom: 64px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 40px;
+  }
+  .qs-left h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 16px;
+  }
+  .qs-left p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .sdk-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .sdk-tag {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: #cbd5e1;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 8px;
+  }
+  .code-terminal {
+    background: #050508;
+    border: 1px solid #1e1e28;
+    border-radius: 12px;
+    padding: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+    color: #e2e8f0;
+    line-height: 1.7;
+    position: relative;
+    overflow-x: auto;
+  }
+  .code-terminal .comment {
+    color: #64748b;
+  }
+  .code-terminal .keyword {
+    color: #c084fc;
+  }
+  .code-terminal .string {
+    color: #34d399;
+  }
+  .code-terminal .var {
+    color: #38bdf8;
+  }
+
+  .dev-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 24px;
+    margin-bottom: 64px;
+  }
+  .dev-feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.25s ease;
+  }
+  .dev-feature-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(6, 182, 212, 0.4);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  }
+  .dev-feature-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 12px;
+  }
+  .dev-feature-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .quickstart-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+  <header class="site-header">
+  <div class="header-container">
+    <a href="/" class="brand-logo">
+      <img src="/assets/images/logo-64.png" alt="Saastify Logo" style="width:32px;height:32px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.35);" />
+      <span>Saastify</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="/#pricing" class="nav-link">Pricing</a>
+      <a href="/products" class="nav-link ">Products</a>
+      <a href="/developers" class="nav-link active">Developers</a>
+      <a href="/resources" class="nav-link ">Resources</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="/dashboard" class="btn-login" style="display:inline-flex;align-items:center;gap:6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="/#pricing" class="btn-cta">Get Started</a>
+    </div>
+  </div>
+</header>
+
+  <main>
+    <section class="dev-hero">
+  <div class="dev-badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="16 18 22 12 16 6"></polyline>
+      <polyline points="8 6 2 12 8 18"></polyline>
+    </svg>
+    <span>Developer Hub & APIs</span>
+  </div>
+  <h1>Engineered for Builders, Scale-ups & DevOps</h1>
+  <p>Connect to Saastify compute, multi-tenant databases, CRM webhooks, and autonomous AI agents using our unified REST and GraphQL APIs.</p>
+</section>
+
+<div class="dev-container">
+
+  <!-- Quickstart Grid -->
+  <div class="quickstart-grid">
+    <div class="qs-left">
+      <h2>Instant API Integration</h2>
+      <p>Provision cloud servers, trigger AI workflows, and manage customer billing in under 10 lines of code. Official SDKs with 100% TypeScript type definitions.</p>
+      <div class="sdk-tags">
+        <span class="sdk-tag">📦 Node.js / TS</span>
+        <span class="sdk-tag">🐍 Python 3.12</span>
+        <span class="sdk-tag">⚡ Golang 1.23</span>
+        <span class="sdk-tag">🐘 PHP / Laravel</span>
+      </div>
+      <a href="/dashboard" class="btn-cta" style="display:inline-block;">Get Your API Keys</a>
+    </div>
+    <div class="code-terminal">
+      <span class="comment">// Quickstart: Trigger Saastify Agent Squad</span><br>
+      <span class="keyword">import</span> { <span class="var">SaastifyClient</span> } <span class="keyword">from</span> <span class="string">'@saastify/sdk'</span>;<br><br>
+      <span class="keyword">const</span> <span class="var">client</span> = <span class="keyword">new</span> <span class="var">SaastifyClient</span>({<br>
+      &nbsp;&nbsp;apiKey: process.env.<span class="string">SAASTIFY_API_KEY</span><br>
+      });<br><br>
+      <span class="keyword">const</span> <span class="var">job</span> = <span class="keyword">await</span> <span class="var">client</span>.agents.<span class="var">execute</span>({<br>
+      &nbsp;&nbsp;squad: <span class="string">'engineering'</span>,<br>
+      &nbsp;&nbsp;goal: <span class="string">'Provision cluster & audit code'</span><br>
+      });<br><br>
+      <span class="keyword">console</span>.<span class="var">log</span>(<span class="string">'Status:'</span>, <span class="var">job</span>.status);
+    </div>
+  </div>
+
+  <!-- Developer Feature Cards -->
+  <div class="dev-feature-grid">
+    <div class="dev-feature-card">
+      <h3>🚀 REST & GraphQL APIs</h3>
+      <p>Comprehensive endpoints for server provisioning, DNS management, customer authentication, and real-time webhook subscriptions.</p>
+      <a href="/dashboard" class="nav-link" style="color:#22d3ee;font-weight:700;">Explore Endpoints &rarr;</a>
+    </div>
+
+    <div class="dev-feature-card">
+      <h3>⚡ Real-Time Webhooks</h3>
+      <p>Sub-millisecond event payloads for invoice payments, server health alerts, agent workflow completions, and security incidents.</p>
+      <a href="/dashboard" class="nav-link" style="color:#22d3ee;font-weight:700;">Configure Webhooks &rarr;</a>
+    </div>
+
+    <div class="dev-feature-card">
+      <h3>🛡️ Zero-Trust Security</h3>
+      <p>mTLS, scoped granular API tokens, IP allowlisting, and automated secret rotation built into every endpoint by default.</p>
+      <a href="/dashboard" class="nav-link" style="color:#22d3ee;font-weight:700;">Security Guidelines &rarr;</a>
+    </div>
+  </div>
+
+</div>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <a href="/" class="brand-logo">
+        <img src="/assets/images/logo-64.png" alt="Saastify Logo" style="width:28px;height:28px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.35);" />
+        <span>Saastify</span>
+      </a>
+      <p>Engineered for ambitious businesses building custom software, scalable SaaS platforms, intelligent CRM systems, and autonomous AI teams.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Solutions</h4>
+      <ul>
+        <li><a href="/products#websites">Websites & Web Apps</a></li>
+        <li><a href="/products#software">Softwares & SaaS</a></li>
+        <li><a href="/products#crm">CRM & Business Tools</a></li>
+        <li><a href="/products#ai">AI Agents & Workflows</a></li>
+        <li><a href="/products#cloud">Cloud & DevOps</a></li>
+        <li><a href="/products#mobile">Mobile Applications</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="/#pricing">Pricing Tiers</a></li>
+        <li><a href="/products">Products Catalog</a></li>
+        <li><a href="/developers">Developer Hub</a></li>
+        <li><a href="/resources">Documentation</a></li>
+        <li><a href="/dashboard">Client Portal</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company & Legal</h4>
+      <ul>
+        <li><a href="/resources">About Saastify</a></li>
+        <li><a href="/developers">API Status</a></li>
+        <li><a href="/resources">Privacy Policy</a></li>
+        <li><a href="/resources">Terms of Service</a></li>
+        <li><a href="/resources">Security & Compliance</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div>&copy; 2026 Saastify Inc. All rights reserved. Enterprise software & autonomous systems engineered worldwide.</div>
+    <div style="display:flex;gap:20px;">
+      <a href="/resources" style="color:var(--text-muted);text-decoration:none;">Privacy Policy</a>
+      <a href="/resources" style="color:var(--text-muted);text-decoration:none;">Terms of Service</a>
+      <a href="/resources" style="color:var(--text-muted);text-decoration:none;">Security</a>
+    </div>
+  </div>
+</footer>
+
+  <!-- Global Interactive Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            const targetElem = document.querySelector(targetId);
+            if (targetElem) {
+              e.preventDefault();
+              targetElem.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
+    });
+  </script>
+
+  </body>
+</html>

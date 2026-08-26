@@ -1,0 +1,1 @@
+var e=function(e){return e.Medium=`medium`,e.Large=`large`,e}({});export{e as t};

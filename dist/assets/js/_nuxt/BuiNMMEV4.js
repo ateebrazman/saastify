@@ -1,0 +1,1 @@
+import{t as e}from"./DC83Vfwm4.js";var t=()=>({main:[e(),{groupName:`pt.features-group.benefits`,groupedFeatures:[{name:`search-reply-summarize`,feature:`feature-list.feature.search-reply-summarize`},{name:`agentic-mail`,feature:`feature-list.feature.mail-api-agentic-mail`,tooltip:`feature-list.tooltip.agentic-mail`}]}]});export{t as getFeatures};

@@ -1,0 +1,101 @@
+import { bi as e } from "./BtP95aSo.js";
+var t = () => ({
+  main: [
+    {
+      groupedFeatures: [
+        {
+          name: `web-amount-no-bold`,
+          feature: `feature-list.feature.web-amount-no-bold`,
+          specificationValueKey: `websites-amount`,
+        },
+        {
+          name: `free-domain-one-year`,
+          feature: `feature-list.feature.free-domain-one-year-alt`,
+          tooltip: `feature-list.tooltip.free-domain-one-year`,
+          excludedPeriods: [1],
+        },
+        {
+          name: `nvme-storage-amount`,
+          feature: `feature-list.feature.nvme-storage-amount-simple`,
+          specificationValueKey: `nvme-disk-space-amount`,
+        },
+        {
+          name: `daily-backups`,
+          feature: `feature-list.feature.daily-backups-on-demand`,
+          tooltip: `feature-list.tooltip.daily-backups`,
+        },
+        {
+          name: `cdn-included`,
+          feature: `feature-list.feature.cdn-included`,
+          tooltip: `feature-list.tooltip.free-cdn`,
+        },
+        {
+          name: `multi-products`,
+          feature: `feature-list.feature.multi-products`,
+          tooltip: `feature-list.tooltip.integrated-ecommerce`,
+        },
+        {
+          name: `ai-tools`,
+          feature: `feature-list.compare-feature.ai-tools`,
+          tooltip: `feature-list.tooltip.ai-tools`,
+        },
+        {
+          name: `24-7-priority-expert-support`,
+          feature: `feature-list.feature.24-7-priority-expert-support`,
+        },
+      ],
+    },
+    {
+      groupName: `pt.features-group.builtWith`,
+      groupedFeatures: [
+        {
+          name: `ai-credits-builder-horizons`,
+          feature: `feature-list.feature.ai-credits-builder-horizons`,
+          icon: e.BuilderLogo,
+          tooltip: `feature-list.tooltip.ai-credits-builder-horizon`,
+          iconColor: `h-color-neutral-900`,
+          specificationValueKey: `horizon-credits-amount`,
+        },
+        {
+          name: `wordpress`,
+          feature: `feature-list.feature.wordpress`,
+          icon: e.BrandWordpress,
+          iconColor: `h-color-neutral-900`,
+        },
+        {
+          name: `node-js`,
+          feature: `feature-list.feature.node-js`,
+          tooltip: `feature-list.tooltip.node-js`,
+          icon: e.NodeJs,
+          iconColor: `h-color-neutral-900`,
+        },
+      ],
+    },
+    {
+      groupName: `pt.features-group.communicateAndGrow`,
+      groupedFeatures: [
+        {
+          name: `mailboxes`,
+          feature: `feature-list.feature.mailboxes-unlimited-simple`,
+          tooltip: `feature-list.tooltip.email-accounts-with-price`,
+          tooltipSpecificationValueKey: `hostingermail-pro-renewal-value`,
+          specificationValueKey: `email-account-amount`,
+          excludedPeriods: [1],
+        },
+        {
+          name: `mailboxes`,
+          feature: `feature-list.feature.mailboxes-long-1-month`,
+          tooltip: `feature-list.tooltip.email-accounts-with-price`,
+          tooltipSpecificationValueKey: `hostingermail-pro-renewal-value`,
+          specificationValueKey: `email-account-amount`,
+          excludedPeriods: [12, 24, 48],
+        },
+        {
+          name: `ai-email-marketing`,
+          feature: `feature-list.feature.ai-email-marketing-one-year`,
+        },
+      ],
+    },
+  ],
+});
+export { t as getFeatures };

@@ -1,0 +1,1 @@
+import{Ht as e,Rt as t,ht as n}from"./QgQWmE83.js";import{Ir as r}from"./BtP95aSo.js";var i={},a={class:`theme-base theme-hWebsites mode-light`};function o(r,i){return t(),n(`div`,a,[e(r.$slots,`default`)])}var s=r(i,[[`render`,o]]);export{s as default};

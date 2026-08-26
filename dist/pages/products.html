@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products &amp; Software Solutions - Saastify</title>
+  <meta name="description" content="Explore Saastify custom software engineering, scalable multi-tenant SaaS platforms, custom CRM systems, autonomous AI agents, cloud DevOps, and mobile applications.">
+
+  <!-- Multi-size Favicons & Brand Assets -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Global Base Styles & Design Tokens -->
+  <style>
+    :root {
+      --bg-dark: #09090b;
+      --bg-surface: #121216;
+      --bg-card: #18181f;
+      --bg-card-hover: #20202a;
+      --border-color: #272732;
+      --border-color-hover: #3b3b4f;
+      --text-main: #f4f4f6;
+      --text-muted: #9494a8;
+      --primary: #6d28d9;
+      --primary-light: #8b5cf6;
+      --primary-glow: rgba(139, 92, 246, 0.18);
+      --secondary: #06b6d4;
+      --accent: #10b981;
+      --badge-popular: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Shared Header Styles */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 9, 11, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: #ffffff;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .btn-login {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .btn-login:hover {
+      background: var(--bg-card);
+      border-color: var(--border-color-hover);
+    }
+    .btn-cta {
+      background: var(--primary-light);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 8px;
+      box-shadow: 0 4px 14px var(--primary-glow);
+      transition: all 0.2s ease;
+    }
+    .btn-cta:hover {
+      background: #7c3aed;
+      transform: translateY(-1px);
+    }
+
+    /* Shared Footer Styles */
+    .site-footer {
+      background: #09090b;
+      border-top: 1px solid var(--border-color);
+      padding: 64px 24px 32px;
+    }
+    .footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 16px;
+      max-width: 320px;
+      line-height: 1.6;
+    }
+    .footer-col h4 {
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      margin: 0 0 18px;
+    }
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+    .footer-col a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s ease;
+    }
+    .footer-col a:hover {
+      color: #ffffff;
+    }
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-top: 32px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <style>
+  .products-hero {
+    padding: 80px 24px 60px;
+    text-align: center;
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .products-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    color: #a78bfa;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .products-hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    margin: 0 0 20px;
+    background: linear-gradient(135deg, #ffffff 40%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .products-hero p {
+    font-size: clamp(16px, 2vw, 19px);
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0 auto 36px;
+    max-width: 680px;
+  }
+
+  /* Filter Navigation */
+  .category-filter-nav {
+    position: sticky;
+    top: 72px;
+    z-index: 90;
+    background: rgba(9, 9, 11, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 14px 24px;
+    margin-bottom: 40px;
+  }
+  .category-filter-list {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .category-filter-list::-webkit-scrollbar {
+    display: none;
+  }
+  .category-pill {
+    padding: 8px 18px;
+    border-radius: 9999px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .category-pill:hover, .category-pill.active {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary-light);
+    box-shadow: 0 4px 12px var(--primary-glow);
+  }
+
+  /* Catalog Container */
+  .catalog-container {
+    max-width: 1280px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+  }
+  .section-block {
+    margin-bottom: 64px;
+    scroll-margin-top: 150px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .section-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    color: #a78bfa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .section-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    margin: 0;
+  }
+  .section-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 2px 0 0;
+  }
+
+  /* Product Cards Grid */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 24px;
+  }
+  .product-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 0 20px var(--primary-glow);
+  }
+  .card-top {
+    margin-bottom: 20px;
+  }
+  .card-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .card-badge {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 9999px;
+  }
+  .card-badge.popular {
+    background: rgba(168, 85, 247, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    color: #c084fc;
+  }
+  .card-badge.standard {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+  }
+  .product-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 8px;
+  }
+  .product-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0 0 18px;
+  }
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+  }
+  .feature-item {
+    font-size: 13.5px;
+    color: #cbd5e1;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .feature-item svg {
+    color: #10b981;
+    flex-shrink: 0;
+  }
+  .tech-stack-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .tech-tag {
+    font-size: 11.5px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    padding: 2px 8px;
+    border-radius: 6px;
+    color: #94a3b8;
+  }
+  .card-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+  }
+  .card-price {
+    font-size: 18px;
+    font-weight: 800;
+    color: #ffffff;
+  }
+  .card-price span {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .btn-card {
+    background: var(--primary);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+  .btn-card:hover {
+    background: var(--primary-light);
+    transform: translateY(-1px);
+  }
+
+  /* Bottom CTA */
+  .bottom-cta-banner {
+    background: linear-gradient(135deg, rgba(109, 40, 217, 0.2) 0%, rgba(15, 23, 42, 0.6) 100%);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 20px;
+    padding: 48px;
+    text-align: center;
+    margin-top: 60px;
+  }
+  .bottom-cta-banner h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 12px;
+  }
+  .bottom-cta-banner p {
+    color: var(--text-muted);
+    font-size: 16px;
+    max-width: 600px;
+    margin: 0 auto 24px;
+  }
+
+  @media (max-width: 768px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+  <header class="site-header">
+  <div class="header-container">
+    <a href="/" class="brand-logo">
+      <img src="/assets/images/logo-64.png" alt="Saastify Logo" style="width:32px;height:32px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.35);" />
+      <span>Saastify</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="/#pricing" class="nav-link">Pricing</a>
+      <a href="/products" class="nav-link active">Products</a>
+      <a href="/developers" class="nav-link ">Developers</a>
+      <a href="/resources" class="nav-link ">Resources</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="/dashboard" class="btn-login" style="display:inline-flex;align-items:center;gap:6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="/#pricing" class="btn-cta">Get Started</a>
+    </div>
+  </div>
+</header>
+
+  <main>
+    <section class="products-hero">
+  <div class="products-badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+    </svg>
+    <span>Software Engineering Powerhouse</span>
+  </div>
+  <h1>Engineered Solutions & SaaS Catalog</h1>
+  <p>From high-converting web applications and multi-tenant SaaS architectures to custom enterprise CRM platforms and autonomous AI agent squads.</p>
+</section>
+
+<!-- Category Filter Navbar -->
+<nav class="category-filter-nav">
+  <div class="category-filter-list">
+    <a href="#websites" class="category-pill active">🌐 Websites & Web Apps</a>
+    <a href="#software" class="category-pill">💻 Softwares & SaaS</a>
+    <a href="#crm" class="category-pill">👥 CRM & Enterprise</a>
+    <a href="#ai" class="category-pill">🤖 AI Agents & Workflows</a>
+    <a href="#cloud" class="category-pill">☁️ Cloud & DevOps</a>
+    <a href="#mobile" class="category-pill">📱 Mobile Applications</a>
+  </div>
+</nav>
+
+<div class="catalog-container">
+
+  <!-- 1. WEBSITES & WEB APPS -->
+  <section id="websites" class="section-block">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <div class="section-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </div>
+        <div>
+          <h2 class="section-title">Websites & Modern Web Applications</h2>
+          <p class="section-subtitle">Ultra-fast Next.js, React, and Vue digital flagships engineered for conversions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <!-- Card 1 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge popular">Popular</span>
+          </div>
+          <h3 class="product-title">Custom Web Applications</h3>
+          <p class="product-desc">Full-stack dynamic applications built on Next.js 15, SSR, Edge rendering, and real-time synchronization.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">Next.js 15</span>
+            <span class="tech-tag">React 19</span>
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">Node.js</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Sub-second page load times</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Role-based authentication & RBAC</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>PostgreSQL / Prisma ORM setup</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">Custom <span>/ project</span></div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge standard">High-Converting</span>
+          </div>
+          <h3 class="product-title">High-Converting Landing Pages</h3>
+          <p class="product-desc">Bespoke digital flagships designed for conversion optimization, rapid load speeds, and dynamic animations.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">Tailwind</span>
+            <span class="tech-tag">Framer Motion</span>
+            <span class="tech-tag">Vite</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>99+ Google Lighthouse score</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Interactive 3D & micro-interactions</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>A/B testing & analytics ready</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">Fast Turnaround</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge standard">Commerce</span>
+          </div>
+          <h3 class="product-title">E-Commerce & Marketplaces</h3>
+          <p class="product-desc">Multi-vendor marketplaces, Stripe checkout pipelines, automated shipping calculators, and inventory engines.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">Stripe</span>
+            <span class="tech-tag">Next Commerce</span>
+            <span class="tech-tag">Redis</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Global multi-currency checkout</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Automated tax & invoicing</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Vendor payouts & commission engine</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">Scalable <span>/ architecture</span></div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. SOFTWARES & SAAS PLATFORMS -->
+  <section id="software" class="section-block">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <div class="section-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <div>
+          <h2 class="section-title">Softwares & SaaS Platforms</h2>
+          <p class="section-subtitle">Multi-tenant architectures, high-throughput microservices, and enterprise ERP tools.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <!-- Card 1 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge popular">Top Tier</span>
+          </div>
+          <h3 class="product-title">SaaS Platform Engineering</h3>
+          <p class="product-desc">End-to-end multi-tenant SaaS architecture with automated recurring billing, usage metering, and domain routing.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">Multi-Tenant</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Docker</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Tenant data isolation & sharding</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Stripe Billing & metered usage</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Automated tenant SSL provisioning</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">Production Ready</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge standard">Backend</span>
+          </div>
+          <h3 class="product-title">Microservices & API Engines</h3>
+          <p class="product-desc">Ultra-low latency REST, GraphQL, and gRPC backends built for extreme concurrency in Go and Node.js.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">Golang</span>
+            <span class="tech-tag">gRPC</span>
+            <span class="tech-tag">Kafka</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>100k+ requests/sec throughput</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Distributed event streaming</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>OpenAPI & Postman docs generated</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">High Scale</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge standard">Enterprise</span>
+          </div>
+          <h3 class="product-title">Enterprise ERP & Internal Ops</h3>
+          <p class="product-desc">Custom company-wide operations, inventory synchronization, HR management, and executive BI dashboards.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">Laravel 13</span>
+            <span class="tech-tag">ClickHouse</span>
+            <span class="tech-tag">Vue 3</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Real-time analytics dashboards</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Audit logging & compliance</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Granular permissions & approval flows</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">Custom Tier</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. CRM & BUSINESS SYSTEMS -->
+  <section id="crm" class="section-block">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <div class="section-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <div>
+          <h2 class="section-title">CRM & Business Systems</h2>
+          <p class="section-subtitle">Tailored deal pipelines, automated invoicing, customer ticketing, and AI lead enrichment.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <!-- Card 1 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge popular">Zero Seat Fees</span>
+          </div>
+          <h3 class="product-title">Custom CRM Platforms</h3>
+          <p class="product-desc">Tailored deal stages, contact scoring, sales team assignment, and lifecycle automations without exorbitant per-user charges.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">Custom CRM</span>
+            <span class="tech-tag">Webhooks</span>
+            <span class="tech-tag">Postgres</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Visual Kanban pipeline tracking</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Email sync & call logging</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Automated contract generation</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">Unlimited Seats</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge standard">AI-Powered</span>
+          </div>
+          <h3 class="product-title">AI Lead Capture & Scoring</h3>
+          <p class="product-desc">Instant visitor enrichment, AI buying-intent scoring, LinkedIn profile discovery, and CRM routing.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">AI Enrichment</span>
+            <span class="tech-tag">Clay / n8n</span>
+            <span class="tech-tag">REST API</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Real-time lead verification</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Intent scoring algorithms</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Direct Slack / WhatsApp alerts</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">Autonomous</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge standard">Support</span>
+          </div>
+          <h3 class="product-title">Omnichannel Support Desk</h3>
+          <p class="product-desc">Centralized customer ticketing across Email, Live Chat, WhatsApp, and Socials with AI auto-resolution bots.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">HelpDesk</span>
+            <span class="tech-tag">AI Agents</span>
+            <span class="tech-tag">Knowledge Base</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>SLA breach prevention</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Instant AI auto-responses</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Integrated customer portal</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">24/7 Engine</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. AI AGENTS & WORKFLOWS -->
+  <section id="ai" class="section-block">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <div class="section-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+            <rect x="9" y="9" width="4" height="4"></rect>
+            <line x1="9" y1="1" x2="9" y2="4"></line>
+            <line x1="15" y1="1" x2="15" y2="4"></line>
+            <line x1="9" y1="20" x2="9" y2="23"></line>
+            <line x1="15" y1="20" x2="15" y2="23"></line>
+          </svg>
+        </div>
+        <div>
+          <h2 class="section-title">AI Agents & Workflow Automations</h2>
+          <p class="section-subtitle">Autonomous agent squads, persistent background runners, and n8n visual automation pipelines.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <!-- Card 1 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge popular">Autonomous</span>
+          </div>
+          <h3 class="product-title">Saastify Agent Squad</h3>
+          <p class="product-desc">Specialized AI agents (Rex, Quinn, Mason, Luna) operating cooperatively to design, code, test, and manage workflows.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">Agentic AI</span>
+            <span class="tech-tag">Multi-Agent</span>
+            <span class="tech-tag">LLM Tools</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Continuous goal-driven execution</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Built-in tool calling & validation</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Persistent memory & context</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">Managed Squad</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge standard">Automation</span>
+          </div>
+          <h3 class="product-title">Self-Hosted n8n & API Pipelines</h3>
+          <p class="product-desc">Visual automation pipelines connecting 500+ business APIs, webhooks, payment providers, and LLM nodes without SaaS limits.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">n8n</span>
+            <span class="tech-tag">Webhooks</span>
+            <span class="tech-tag">Zero Per-Task Cost</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Unlimited workflow executions</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Custom JavaScript & Python nodes</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Encrypted credentials vault</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">Zero Limits</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge standard">Vision & Voice</span>
+          </div>
+          <h3 class="product-title">Document OCR & Voice AI</h3>
+          <p class="product-desc">Intelligent document parsing, PDF invoice data extraction, and real-time conversational phone agents.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">Vision AI</span>
+            <span class="tech-tag">Realtime Audio</span>
+            <span class="tech-tag">Embeddings</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Structured JSON extraction</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Human-like conversational latency</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Vector semantic knowledge base</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">High Accuracy</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CLOUD & DEVOPS -->
+  <section id="cloud" class="section-block">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <div class="section-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+          </svg>
+        </div>
+        <div>
+          <h2 class="section-title">Cloud Infrastructure & DevOps</h2>
+          <p class="section-subtitle">High-performance dedicated NVMe VPS, Kubernetes clusters, managed databases, and CI/CD.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <!-- Card 1 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge popular">Compute</span>
+          </div>
+          <h3 class="product-title">High-Performance Cloud VPS</h3>
+          <p class="product-desc">Dedicated AMD EPYC / Intel Xeon NVMe compute nodes with unmetered 10Gbps bandwidth and global low-latency routing.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">NVMe SSD</span>
+            <span class="tech-tag">DDoS Shield</span>
+            <span class="tech-tag">10Gbps</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Instant 30-second provisioning</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Automated snapshot backups</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Root SSH & full isolation</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">From $4.99 <span>/ mo</span></div>
+          <a href="/#pricing" class="btn-card">Deploy VPS</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge standard">Containers</span>
+          </div>
+          <h3 class="product-title">Managed Kubernetes & Docker</h3>
+          <p class="product-desc">Production-grade autoscaling Kubernetes clusters with integrated Ingress controllers, TLS, and monitoring.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">Kubernetes</span>
+            <span class="tech-tag">ArgoCD</span>
+            <span class="tech-tag">Prometheus</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Automatic node auto-healing</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>GitOps automated deployments</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Grafana dashboards pre-configured</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">Enterprise SLA</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge standard">Databases</span>
+          </div>
+          <h3 class="product-title">Managed Database Clusters</h3>
+          <p class="product-desc">High-availability PostgreSQL, MySQL, ClickHouse, and Redis clusters with automated failover and encryption.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">Postgres HA</span>
+            <span class="tech-tag">Redis Cache</span>
+            <span class="tech-tag">Point-In-Time</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Zero data-loss replication</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Point-in-time restore</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Connection pooling ready</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">High Availability</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. MOBILE APPLICATIONS -->
+  <section id="mobile" class="section-block">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <div class="section-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+          </svg>
+        </div>
+        <div>
+          <h2 class="section-title">Mobile Applications</h2>
+          <p class="section-subtitle">iOS and Android applications engineered for 60fps performance and native platform fidelity.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <!-- Card 1 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge popular">Universal</span>
+          </div>
+          <h3 class="product-title">React Native & Expo Apps</h3>
+          <p class="product-desc">Cross-platform iOS and Android applications sharing 95%+ codebase while delivering true native fluidity.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">React Native</span>
+            <span class="tech-tag">Expo Router</span>
+            <span class="tech-tag">TypeScript</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Instant OTA updates via EAS</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Biometric auth (FaceID / TouchID)</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Push notification pipelines</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">iOS & Android</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge standard">Native Apple</span>
+          </div>
+          <h3 class="product-title">Native iOS (SwiftUI)</h3>
+          <p class="product-desc">High-end bespoke iOS, iPadOS, and watchOS experiences built natively using Swift, SwiftUI, and WidgetKit.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">Swift 6</span>
+            <span class="tech-tag">SwiftUI</span>
+            <span class="tech-tag">WidgetKit</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Apple HIG design compliance</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>App Store review approval guarantee</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>StoreKit in-app subscriptions</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">Premium Native</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="product-card">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="card-badge standard">Native Android</span>
+          </div>
+          <h3 class="product-title">Native Android (Kotlin Compose)</h3>
+          <p class="product-desc">Modern native Android applications with Material 3 dynamic styling, Jetpack Compose, and background sync.</p>
+          <div class="tech-stack-row">
+            <span class="tech-tag">Kotlin</span>
+            <span class="tech-tag">Jetpack Compose</span>
+            <span class="tech-tag">Coroutines</span>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Optimized for all Android form factors</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Google Play Store publication & ASO</li>
+            <li class="feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Google Pay integration</li>
+          </ul>
+        </div>
+        <div class="card-action">
+          <div class="card-price">Native Android</div>
+          <a href="/#pricing" class="btn-card">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA Banner -->
+  <div class="bottom-cta-banner">
+    <h2>Ready to engineer your next software breakthrough?</h2>
+    <p>Talk with our senior engineering architects and get a detailed technical blueprint, timeline, and quote in 24 hours.</p>
+    <a href="/#pricing" class="btn-cta" style="display:inline-block;padding:12px 28px;font-size:16px;">Schedule Architecture Review</a>
+  </div>
+
+</div>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <a href="/" class="brand-logo">
+        <img src="/assets/images/logo-64.png" alt="Saastify Logo" style="width:28px;height:28px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.35);" />
+        <span>Saastify</span>
+      </a>
+      <p>Engineered for ambitious businesses building custom software, scalable SaaS platforms, intelligent CRM systems, and autonomous AI teams.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Solutions</h4>
+      <ul>
+        <li><a href="/products#websites">Websites & Web Apps</a></li>
+        <li><a href="/products#software">Softwares & SaaS</a></li>
+        <li><a href="/products#crm">CRM & Business Tools</a></li>
+        <li><a href="/products#ai">AI Agents & Workflows</a></li>
+        <li><a href="/products#cloud">Cloud & DevOps</a></li>
+        <li><a href="/products#mobile">Mobile Applications</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="/#pricing">Pricing Tiers</a></li>
+        <li><a href="/products">Products Catalog</a></li>
+        <li><a href="/developers">Developer Hub</a></li>
+        <li><a href="/resources">Documentation</a></li>
+        <li><a href="/dashboard">Client Portal</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company & Legal</h4>
+      <ul>
+        <li><a href="/resources">About Saastify</a></li>
+        <li><a href="/developers">API Status</a></li>
+        <li><a href="/resources">Privacy Policy</a></li>
+        <li><a href="/resources">Terms of Service</a></li>
+        <li><a href="/resources">Security & Compliance</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div>&copy; 2026 Saastify Inc. All rights reserved. Enterprise software & autonomous systems engineered worldwide.</div>
+    <div style="display:flex;gap:20px;">
+      <a href="/resources" style="color:var(--text-muted);text-decoration:none;">Privacy Policy</a>
+      <a href="/resources" style="color:var(--text-muted);text-decoration:none;">Terms of Service</a>
+      <a href="/resources" style="color:var(--text-muted);text-decoration:none;">Security</a>
+    </div>
+  </div>
+</footer>
+
+  <!-- Global Interactive Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            const targetElem = document.querySelector(targetId);
+            if (targetElem) {
+              e.preventDefault();
+              targetElem.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
+    });
+  </script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const pills = document.querySelectorAll('.category-pill');
+    const sections = document.querySelectorAll('.section-block');
+
+    // Highlight active pill on scroll
+    window.addEventListener('scroll', function() {
+      let currentSectionId = '';
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top <= 200 && top >= -sec.offsetHeight + 200) {
+          currentSectionId = sec.getAttribute('id');
+        }
+      });
+
+      if (currentSectionId) {
+        pills.forEach(p => {
+          if (p.getAttribute('href') === '#' + currentSectionId) {
+            p.classList.add('active');
+          } else {
+            p.classList.remove('active');
+          }
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
